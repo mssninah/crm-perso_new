@@ -78,7 +78,25 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Sample data for charts
+        // Static labels for Leads Status
+        const leadLabels = ['New', 'Meeting to Schedule', 'In Discussion', 'Converted'];
+
+        // Dynamic data for Leads Status (Bar Chart)
+        const leadStatusData = @Html.Raw(ViewBag.LeadStatusData ?? "{}"); // Injected data from the controller
+        const leadValues = leadLabels.map(status => leadStatusData[status] || 0); // Ensure all statuses are represented
+
+        const barData = {
+            labels: leadLabels,
+            datasets: [{
+                label: 'Leads Status',
+                data: leadValues, // Dynamic values mapped to static statuses
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                borderWidth: 1
+            }]
+        };
+
+        // Static data for Ticket Status (Donut Chart)
         const donutData = {
             labels: ['Open', 'In Progress', 'Closed'],
             datasets: [{
@@ -89,17 +107,7 @@
             }]
         };
 
-        const barData = {
-            labels: ['Lead 1', 'Lead 2', 'Lead 3', 'Lead 4'],
-            datasets: [{
-                label: 'Leads Status',
-                data: [5, 12, 3, 8], // Number of leads by status
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
-                borderWidth: 1
-            }]
-        };
-
+        // Static data for Tickets Prices (Line Chart)
         const lineData = {
             labels: ['January', 'February', 'March', 'April', 'May'],
             datasets: [{

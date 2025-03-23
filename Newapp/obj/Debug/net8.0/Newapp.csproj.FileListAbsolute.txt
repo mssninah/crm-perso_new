@@ -29,3 +29,6 @@
 /home/ninah/Eval/Java/git/crm-perso_new/Newapp/obj/Debug/net8.0/Newapp.pdb
 /home/ninah/Eval/Java/git/crm-perso_new/Newapp/obj/Debug/net8.0/Newapp.genruntimeconfig.cache
 /home/ninah/Eval/Java/git/crm-perso_new/Newapp/obj/Debug/net8.0/ref/Newapp.dll
+/home/ninah/Eval/Java/git/crm-perso_new/Newapp/bin/Debug/net8.0/Newtonsoft.Json.dll
+/home/ninah/Eval/Java/git/crm-perso_new/Newapp/obj/Debug/net8.0/Newapp.csproj.AssemblyReference.cache
+/home/ninah/Eval/Java/git/crm-perso_new/Newapp/obj/Debug/net8.0/Newapp.csproj.CopyComplete
