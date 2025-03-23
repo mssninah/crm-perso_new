@@ -1,0 +1,35 @@
+Exemple des points d'API nécessaires :
+
+    Récupérer les tickets :
+
+        Endpoint GET /api/tickets
+
+    Récupérer les leads :
+
+        Endpoint GET /api/leads
+
+    Récupérer les clients :
+
+        Endpoint GET /api/customers
+
+    Récupérer les détails des tickets et leads :
+
+        Endpoint GET /api/tickets/{id}
+
+        Endpoint GET /api/leads/{id}
+
+    Modification des tickets et leads :
+
+        PUT /api/tickets/{id} pour modifier un ticket
+
+        PUT /api/leads/{id} pour modifier un lead
+
+    Suppression des tickets et leads :
+
+        DELETE /api/tickets/{id} pour supprimer un ticket
+
+        DELETE /api/leads/{id} pour supprimer un lead
+
+    Configurer un taux d'alerte :
+
+        PUT /api/budget/{id}/alert pour configurer un taux d'alerte en %
