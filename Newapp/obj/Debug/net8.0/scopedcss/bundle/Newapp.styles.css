@@ -1,56 +1,57 @@
-﻿/* Custom styling for navigation, buttons, and other components */
+/* _content/Newapp/Views/Shared/_Layout.cshtml.rz.scp.css */
+/* Custom styling for navigation, buttons, and other components */
 
-a.navbar-brand {
+a.navbar-brand[b-s44djx8tvn] {
   white-space: normal;
   word-break: break-word;
   font-weight: bold;
   color: #1e40af; /* Change to primary blue */
 }
 
-a {
+a[b-s44djx8tvn] {
   color: #1e40af; /* Use primary blue for links */
   text-decoration: none;
 }
 
-a:hover {
+a:hover[b-s44djx8tvn] {
   color: #e0f2fe; /* Change link color on hover */
   text-decoration: underline;
 }
 
-.btn-primary {
+.btn-primary[b-s44djx8tvn] {
   color: #fff;
   background-color: #1e40af; /* Update to primary blue */
   border-color: #1e3a8a; /* Darker shade for button border */
 }
 
-.btn-primary:hover {
+.btn-primary:hover[b-s44djx8tvn] {
   background-color: #1861ac; /* Slightly darker blue on hover */
   border-color: #0f4e8d;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active[b-s44djx8tvn], .nav-pills .show > .nav-link[b-s44djx8tvn] {
   color: #fff;
   background-color: #1e40af; /* Consistent blue background for active links */
   border-color: #1861ac; /* Matching active state border */
 }
 
-.nav-link {
+.nav-link[b-s44djx8tvn] {
   font-weight: bold;
 }
 
-.border-top {
+.border-top[b-s44djx8tvn] {
   border-top: 1px solid #e0f2fe; /* Lighter border for a cleaner look */
 }
 
-.border-bottom {
+.border-bottom[b-s44djx8tvn] {
   border-bottom: 1px solid #e0f2fe; /* Consistent lighter bottom border */
 }
 
-.box-shadow {
+.box-shadow[b-s44djx8tvn] {
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Soft, more pronounced shadow for cards */
 }
 
-button.accept-policy {
+button.accept-policy[b-s44djx8tvn] {
   font-size: 1rem;
   line-height: inherit;
   background-color: #1e40af; /* Blue background for the button */
@@ -60,11 +61,11 @@ button.accept-policy {
   border-radius: 5px;
 }
 
-button.accept-policy:hover {
+button.accept-policy:hover[b-s44djx8tvn] {
   background-color: #1861ac; /* Darker blue on hover */
 }
 
-.footer {
+.footer[b-s44djx8tvn] {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -75,11 +76,11 @@ button.accept-policy:hover {
   font-size: 0.875rem;
 }
 
-.footer a {
+.footer a[b-s44djx8tvn] {
   color: #1e40af;
 }
 
-.footer a:hover {
+.footer a:hover[b-s44djx8tvn] {
   color: #1861ac;
   text-decoration: underline;
 }

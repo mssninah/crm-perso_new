@@ -1,8 +1,114 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container">
+    <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
+    <p class="text-center mb-5">This is your dashboard where you can view the current status of clients, tickets, and leads.</p>
+    
+    <!-- Displaying Charts -->
+    <div class="row mt-5">
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Ticket Status</h3>
+                <canvas id="donutChart" class="chart-size"></canvas> <!-- Donut Chart -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Leads Status</h3>
+                <canvas id="barChart" class="chart-size"></canvas> <!-- Bar Chart -->
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Tickets Created</h3>
+                <canvas id="lineChart" class="chart-size"></canvas> <!-- Line Chart -->
+            </div>
+        </div>
+    </div>
+    
+    <!-- Displaying Totals with Colored Boxes -->
+    <div class="row mt-5 text-center">
+        <div class="col-md-4">
+            <div class="card text-white bg-info mb-3">
+                <div class="card-body">
+                    <h4>Total Clients: <span id="clientCount">120</span></h4>
+                    <a href="/clients" class="btn btn-light mt-3">View Clients</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-warning mb-3">
+                <div class="card-body">
+                    <h4>Total Tickets: <span id="ticketCount">150</span></h4>
+                    <a href="/tickets" class="btn btn-light mt-3">View Tickets</a>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-white bg-success mb-3">
+                <div class="card-body">
+                    <h4>Total Leads: <span id="leadCount">80</span></h4>
+                    <a href="/leads" class="btn btn-light mt-3">View Leads</a>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
+
+@section Scripts {
+    <!-- Chart.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Sample data for charts
+        const donutData = {
+            labels: ['Open', 'In Progress', 'Closed'],
+            datasets: [{
+                label: 'Ticket Status',
+                data: [20, 30, 50], // Number of tickets by status
+                backgroundColor: ['#1e40af', '#e0f2fe', '#1e3a8a'],
+                borderWidth: 1
+            }]
+        };
+
+        const barData = {
+            labels: ['Lead 1', 'Lead 2', 'Lead 3', 'Lead 4'],
+            datasets: [{
+                label: 'Leads Status',
+                data: [5, 12, 3, 8], // Number of leads by status
+                backgroundColor: '#1e40af',
+                borderColor: '#1e40af',
+                borderWidth: 1
+            }]
+        };
+
+        const lineData = {
+            labels: ['January', 'February', 'March', 'April', 'May'],
+            datasets: [{
+                label: 'Tickets Created',
+                data: [10, 20, 15, 30, 25], // Number of tickets created by month
+                fill: false,
+                borderColor: '#1e40af',
+                tension: 0.1
+            }]
+        };
+
+        // Create the charts
+        const donutChart = new Chart(document.getElementById('donutChart'), {
+            type: 'doughnut',
+            data: donutData
+        });
+
+        const barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: barData
+        });
+
+        const lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: lineData
+        });
+    </script>
+}
