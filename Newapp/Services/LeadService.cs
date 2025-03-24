@@ -15,7 +15,7 @@ namespace Newapp.Services
     public async Task<List<Lead>> GetLeadsAsync(){
         try
         {
-            string apiUrl = "http://localhost:8080/api/leads"; // Assurez-vous que l'URL est correcte
+            string apiUrl = "http://localhost:8080/api/customers"; // Assurez-vous que l'URL est correcte
             HttpResponseMessage response = await client.GetAsync(apiUrl);
 
             if (!response.IsSuccessStatusCode)
@@ -25,7 +25,9 @@ namespace Newapp.Services
             }
 
             string jsonResponse = await response.Content.ReadAsStringAsync();
+            Console.WriteLine(jsonResponse);
             List<Lead> leads = JsonConvert.DeserializeObject<List<Lead>>(jsonResponse);
+
             return leads;
         }
         catch (Exception ex)
