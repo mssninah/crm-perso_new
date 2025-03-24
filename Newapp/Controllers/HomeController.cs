@@ -23,10 +23,11 @@ namespace Newapp.Controllers
             // Récupérer les nombres de leads et tickets
             var leadCount = await _apiService.GetLeadCountAsync();
             var ticketCount = await _apiService.GetTicketCountAsync();
-
+            var customerCount = await _apiService.GetCustomerCountAsync();
             // Passer les valeurs à la vue via ViewBag
             ViewBag.LeadCount = leadCount;
             ViewBag.TicketCount = ticketCount;
+            ViewBag.CustomerCount = customerCount;
 
             return View();
         }

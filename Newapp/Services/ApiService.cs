@@ -72,6 +72,42 @@ namespace Newapp.Services
             }
         }
 
+
+        public async Task<List<Customer>> GetAllCustomersAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("http://localhost:8080/api/customers");
+
+                // Log the raw JSON response
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Response JSON (Customers):");
+                Console.WriteLine(content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the data
+                    return JsonSerializer.Deserialize<List<Customer>>(content);
+                }
+
+                Console.WriteLine("Error: Unable to fetch customers.");
+                return new List<Customer>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred while fetching customers: {ex.Message}");
+                return new List<Customer>();
+            }
+        }
+
+
+        //Get the count of customers
+        public async Task<int> GetCustomerCountAsync()
+        {
+            var customers = await GetAllCustomersAsync();
+            return customers.Count;
+        }
+
         // Get the count of leads
         public async Task<int> GetLeadCountAsync()
         {
