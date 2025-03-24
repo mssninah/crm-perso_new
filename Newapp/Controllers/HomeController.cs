@@ -20,10 +20,10 @@ namespace Newapp.Controllers
         public async Task<IActionResult> Index()
         {
             // Récupérer les données des statuts des leads
-            var leadStatusCounts = await _leadService.GetLeadStatusCountsAsync();
+            // var leadStatusCounts = await _leadService.GetLeadStatusCountsAsync();
 
-            // Injecter les données dans la vue
-            ViewBag.LeadStatusData = JsonConvert.SerializeObject(leadStatusCounts);
+            // // Injecter les données dans la vue
+            // ViewBag.LeadStatusData = JsonConvert.SerializeObject(leadStatusCounts);
 
             return View();
         }
