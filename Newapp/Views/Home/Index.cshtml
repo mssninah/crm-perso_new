@@ -28,33 +28,41 @@
         </div>
     </div>
 
+    <!-- Displaying Tables (Stacked vertically) --><div class="container-fluid">
+    <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
+    <p class="text-center mb-5">This is your dashboard where you can view the current status of clients, tickets, and leads.</p>
+
     <!-- Displaying Totals with Colored Boxes -->
-    <div class="row mt-5 text-center">
-        <div class="col-md-4">
-            <div class="card text-white bg-info mb-3">
-                <div class="card-body">
-                    <h4>Total Clients: <span id="clientCount">120</span></h4>
-                    <a href="/clients" class="btn btn-light mt-3">View Clients</a>
+        <div class="row mt-5 text-center">
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h4>Total Clients: <span id="clientCount">120</span></h4>
+                        <a href="/clients" class="btn btn-light mt-3">View Clients</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-warning mb-3">
-                <div class="card-body">
-                    <h4>Total Tickets: <span id="ticketCount">150</span></h4>
-                    <a href="/tickets" class="btn btn-light mt-3">View Tickets</a>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h4>Total Tickets: <span id="ticketCount">@ViewBag.TicketCount</span></h4>
+                        <a href="/tickets" class="btn btn-light mt-3">View Tickets</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-md-4">
-            <div class="card text-white bg-success mb-3">
-                <div class="card-body">
-                    <h4>Total Leads: <span id="leadCount">80</span></h4>
-                    <a href="/leads" class="btn btn-light mt-3">View Leads</a>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h4>Total Leads: <span id="leadCount">@ViewBag.LeadCount</span></h4>
+                        <a href="/leads" class="btn btn-light mt-3">View Leads</a>
+                    </div>
                 </div>
             </div>
         </div>
     </div>
+
+
+   
 
 </div>
 
@@ -64,8 +72,8 @@
 
     <script>
         // Static data for Leads and Tickets Count (Bar Chart)
-        const leadCount = 80; // Static number of leads
-        const ticketCount = 150; // Static number of tickets
+        const leadCount = @ViewBag.LeadCount; // Nombre dynamique de leads
+        const ticketCount = @ViewBag.TicketCount;  // Static number of tickets
 
         // Data for the Bar Chart (Leads and Tickets)
         const barData = {

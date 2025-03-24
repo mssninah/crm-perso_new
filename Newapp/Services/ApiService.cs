@@ -2,9 +2,10 @@ using System.Net.Http;
 using System.Text.Json;
 using System.Threading.Tasks;
 using System.Collections.Generic;
-using NewApp.Models;
+using Newapp.Models;
+using System;
 
-namespace NewApp.Services
+namespace Newapp.Services
 {
     public class ApiService
     {
@@ -18,31 +19,71 @@ namespace NewApp.Services
         // Récupérer tous les leads
         public async Task<List<Lead>> GetAllLeadsAsync()
         {
-            // Correct the URL
-            var response = await _httpClient.GetAsync("http://localhost:8080/api/leads");
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var content = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<List<Lead>>(content);
-            }
+                var response = await _httpClient.GetAsync("http://localhost:8080/api/leads");
 
-            return new List<Lead>();
+                // Log the raw JSON response
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Response JSON (Leads):");
+                Console.WriteLine(content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the data
+                    return JsonSerializer.Deserialize<List<Lead>>(content);
+                }
+
+                Console.WriteLine("Error: Unable to fetch leads.");
+                return new List<Lead>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred while fetching leads: {ex.Message}");
+                return new List<Lead>();
+            }
         }
 
         // Récupérer tous les tickets
         public async Task<List<Ticket>> GetAllTicketsAsync()
         {
-            // Correct the URL
-            var response = await _httpClient.GetAsync("http://localhost:8080/api/tickets");
-
-            if (response.IsSuccessStatusCode)
+            try
             {
-                var content = await response.Content.ReadAsStringAsync();
-                return JsonSerializer.Deserialize<List<Ticket>>(content);
-            }
+                var response = await _httpClient.GetAsync("http://localhost:8080/api/tickets");
 
-            return new List<Ticket>();
+                // Log the raw JSON response
+                var content = await response.Content.ReadAsStringAsync();
+                Console.WriteLine("Response JSON (Tickets):");
+                Console.WriteLine(content);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    // Deserialize and return the data
+                    return JsonSerializer.Deserialize<List<Ticket>>(content);
+                }
+
+                Console.WriteLine("Error: Unable to fetch tickets.");
+                return new List<Ticket>();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred while fetching tickets: {ex.Message}");
+                return new List<Ticket>();
+            }
+        }
+
+        // Get the count of leads
+        public async Task<int> GetLeadCountAsync()
+        {
+            var leads = await GetAllLeadsAsync();
+            return leads.Count;
+        }
+
+        // Get the count of tickets
+        public async Task<int> GetTicketCountAsync()
+        {
+            var tickets = await GetAllTicketsAsync();
+            return tickets.Count;
         }
     }
 }

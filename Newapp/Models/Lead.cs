@@ -1,4 +1,4 @@
-namespace NewApp.Models
+namespace Newapp.Models
 {
     public class Lead
     {

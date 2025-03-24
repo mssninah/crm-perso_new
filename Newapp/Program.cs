@@ -9,6 +9,7 @@ builder.Services.AddHttpClient();
 
 // Enregistrement du service AlertService
 builder.Services.AddScoped<AlertService>();
+builder.Services.AddScoped<ApiService>();
 
 
 
