@@ -18,12 +18,20 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/ninah/Eval/Java/git/crm-perso_new/Newapp
 build_property._RazorSourceGeneratorDebug = 
 
+[/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Views/Alert/ConfigureAlertRate.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWxlcnQvQ29uZmlndXJlQWxlcnRSYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Views/Home/Index.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Views/Home/Privacy.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Views/Lead/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGVhZC9JbmRleC5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Views/Shared/Error.cshtml]

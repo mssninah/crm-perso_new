@@ -5,45 +5,29 @@
 <div class="container-fluid">
     <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
     <p class="text-center mb-5">This is your dashboard where you can view the current status of clients, tickets, and leads.</p>
-    
-    <!-- Alert Rate Configuration Form -->
-    <div class="row mb-5">
-        <div class="col-md-6 offset-md-3">
-            <div class="card shadow-sm p-3">
-                <h3 class="text-center">Configure Alert Rate</h3>
-                <form>
-                    <div class="form-group">
-                        <label for="alertRate">Alert Rate (in %):</label>
-                        <input type="number" class="form-control" id="alertRate" name="alertRate" min="0" max="100" placeholder="Enter alert rate">
-                    </div>
-                    <button type="submit" class="btn btn-primary mt-3">Save</button>
-                </form>
-            </div>
-        </div>
-    </div>
-    
-    <!-- Displaying Charts -->
+
+    <!-- Displaying Charts (Stacked vertically) -->
     <div class="row">
-        <div class="col-md-4 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="card shadow-sm p-3">
                 <h3 class="text-center">Ticket Status</h3>
                 <canvas id="donutChart" class="chart-size"></canvas> <!-- Donut Chart -->
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="card shadow-sm p-3">
-                <h3 class="text-center">Leads Status</h3>
+                <h3 class="text-center">Leads and Tickets Count</h3>
                 <canvas id="barChart" class="chart-size"></canvas> <!-- Bar Chart -->
             </div>
         </div>
-        <div class="col-md-4 mb-4">
+        <div class="col-md-12 mb-4">
             <div class="card shadow-sm p-3">
                 <h3 class="text-center">Tickets Prices</h3>
                 <canvas id="lineChart" class="chart-size"></canvas> <!-- Line Chart -->
             </div>
         </div>
     </div>
-    
+
     <!-- Displaying Totals with Colored Boxes -->
     <div class="row mt-5 text-center">
         <div class="col-md-4">
@@ -71,6 +55,7 @@
             </div>
         </div>
     </div>
+
 </div>
 
 @section Scripts {
@@ -78,20 +63,18 @@
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
     <script>
-        // Static labels for Leads Status
-        const leadLabels = ['New', 'Meeting to Schedule', 'In Discussion', 'Converted'];
+        // Static data for Leads and Tickets Count (Bar Chart)
+        const leadCount = 80; // Static number of leads
+        const ticketCount = 150; // Static number of tickets
 
-        // Dynamic data for Leads Status (Bar Chart)
-        const leadStatusData = @Html.Raw(ViewBag.LeadStatusData ?? "{}"); // Injected data from the controller
-        const leadValues = leadLabels.map(status => leadStatusData[status] || 0); // Ensure all statuses are represented
-
+        // Data for the Bar Chart (Leads and Tickets)
         const barData = {
-            labels: leadLabels,
+            labels: ['Leads', 'Tickets'],
             datasets: [{
-                label: 'Leads Status',
-                data: leadValues, // Dynamic values mapped to static statuses
-                backgroundColor: '#1e40af',
-                borderColor: '#1e40af',
+                label: 'Leads and Tickets Count',
+                data: [leadCount, ticketCount], // Static values for leads and tickets
+                backgroundColor: ['#1e40af', '#e0f2fe'], // Different colors for each bar
+                borderColor: ['#1e40af', '#1e3a8a'],
                 borderWidth: 1
             }]
         };
@@ -101,7 +84,7 @@
             labels: ['Open', 'In Progress', 'Closed'],
             datasets: [{
                 label: 'Ticket Status',
-                data: [20, 30, 50], // Number of tickets by status
+                data: [20, 30, 50], // Static values for the status of tickets
                 backgroundColor: ['#1e40af', '#e0f2fe', '#1e3a8a'],
                 borderWidth: 1
             }]
@@ -112,7 +95,7 @@
             labels: ['January', 'February', 'March', 'April', 'May'],
             datasets: [{
                 label: 'Tickets Created',
-                data: [10, 20, 15, 30, 25], // Number of tickets created by month
+                data: [10, 20, 15, 30, 25], // Static values for the number of tickets created each month
                 fill: false,
                 borderColor: '#1e40af',
                 tension: 0.1

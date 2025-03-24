@@ -1,7 +1,20 @@
+using Newapp.Services; 
+
+
 var builder = WebApplication.CreateBuilder(args);
+
+
+// Enregistrer HttpClient
+builder.Services.AddHttpClient();  
+
+// Enregistrement du service AlertService
+builder.Services.AddScoped<AlertService>();
+
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
+
 
 var app = builder.Build();
 

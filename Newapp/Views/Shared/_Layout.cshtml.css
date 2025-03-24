@@ -1,59 +1,84 @@
 ﻿/* Custom styling for navigation, buttons, and other components */
 
+/* Navbar styling */
 a.navbar-brand {
   white-space: normal;
   word-break: break-word;
   font-weight: bold;
-  color: #1e40af; /* Change to primary blue */
+  color: #1e40af; /* Primary blue */
+  font-size: 1.5rem; /* Larger size for the brand */
 }
 
 a {
-  color: #1e40af; /* Use primary blue for links */
+  color: #1e40af; /* Primary blue for links */
   text-decoration: none;
 }
 
 a:hover {
-  color: #e0f2fe; /* Change link color on hover */
+  color: #e0f2fe; /* Light blue on hover */
   text-decoration: underline;
 }
 
+/* Button styling */
 .btn-primary {
   color: #fff;
-  background-color: #1e40af; /* Update to primary blue */
-  border-color: #1e3a8a; /* Darker shade for button border */
+  background-color: #1e40af; /* Primary blue */
+  border-color: #1e3a8a; /* Darker shade for border */
+  font-size: 1.1rem; /* Slightly larger text */
+  padding: 12px 20px;
+  border-radius: 5px;
 }
 
 .btn-primary:hover {
-  background-color: #1861ac; /* Slightly darker blue on hover */
+  background-color: #1861ac; /* Darker blue on hover */
   border-color: #0f4e8d;
 }
 
 .nav-pills .nav-link.active, .nav-pills .show > .nav-link {
   color: #fff;
-  background-color: #1e40af; /* Consistent blue background for active links */
+  background-color: #1e40af; /* Active link background */
   border-color: #1861ac; /* Matching active state border */
 }
 
+/* Navigation link styles */
 .nav-link {
   font-weight: bold;
+  font-size: 1.1rem; /* Increased font size */
+  padding: 10px 15px;
 }
 
+.navbar-nav {
+  margin-left: auto;
+}
+
+/* Cards and container layout */
+.card {
+  border-radius: 8px;
+  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Soft shadow */
+}
+
+.card-body {
+  padding: 20px;
+}
+
+/* Border styling for sections */
 .border-top {
-  border-top: 1px solid #e0f2fe; /* Lighter border for a cleaner look */
+  border-top: 1px solid #e0f2fe; /* Lighter border for cleaner look */
 }
 
 .border-bottom {
-  border-bottom: 1px solid #e0f2fe; /* Consistent lighter bottom border */
+  border-bottom: 1px solid #e0f2fe; /* Consistent bottom border */
 }
 
+/* Box shadow for better card depth */
 .box-shadow {
-  box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Soft, more pronounced shadow for cards */
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
 }
 
+/* Custom button for accept policy */
 button.accept-policy {
   font-size: 1rem;
-  line-height: inherit;
-  background-color: #1e40af; /* Blue background for the button */
+  background-color: #1e40af; /* Blue background */
   color: white;
   border: none;
   padding: 10px 20px;
@@ -64,15 +89,18 @@ button.accept-policy:hover {
   background-color: #1861ac; /* Darker blue on hover */
 }
 
+/* Footer styling */
 .footer {
   position: fixed;
   bottom: 0;
   width: 100%;
-  background-color: #f1f5f9; /* Light background for footer */
-  color: #1e40af; /* Text color matching the primary theme */
+  background-color: #f1f5f9; /* Light background */
+  color: #1e40af; /* Matching text color */
   text-align: center;
   line-height: 50px;
   font-size: 0.875rem;
+  padding: 15px 0;
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Light shadow for footer */
 }
 
 .footer a {
@@ -82,4 +110,35 @@ button.accept-policy:hover {
 .footer a:hover {
   color: #1861ac;
   text-decoration: underline;
+}
+
+/* Dashboard header styling */
+h1.display-4 {
+  font-weight: 600;
+  color: #1e40af;
+  margin-bottom: 30px;
+  font-size: 2.5rem;
+}
+
+p.text-center {
+  font-size: 1.125rem;
+  color: #555;
+}
+
+/* Responsive design for small screens */
+@media (max-width: 768px) {
+  .navbar-nav {
+    margin-top: 10px;
+    text-align: center;
+  }
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+  .card {
+    margin-bottom: 15px;
+  }
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
 }
