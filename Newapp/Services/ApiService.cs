@@ -147,6 +147,28 @@ namespace Newapp.Services
             }
         }
 
+        public async Task<User> CheckUserAsync(string email)
+        {
+            try
+            {
+                var response = await _httpClient.PostAsync("http://localhost:8080/api/logincsharp", 
+                    new StringContent(email));
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var content = await response.Content.ReadAsStringAsync();
+                    var user = JsonSerializer.Deserialize<User>(content);
+                    return user;
+                }
+
+                return null;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Error during login request: {ex.Message}");
+                return null;
+            }
+        }
 
 
         
