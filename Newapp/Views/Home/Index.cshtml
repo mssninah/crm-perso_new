@@ -4,7 +4,6 @@
 
 <div class="container-fluid">
     <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
-    <p class="text-center mb-5">This is your dashboard where you can view the current status of clients, tickets, and leads.</p>
 
     <!-- Displaying Charts (Stacked vertically) -->
     <div class="row">
@@ -38,7 +37,6 @@
                 <div class="card text-white bg-info mb-3">
                     <div class="card-body">
                         <h4>Total Clients: <span id="clientCount">@ViewBag.CustomerCount</span></h4>
-                        <a href="/clients" class="btn btn-light mt-3">View Clients</a>
                     </div>
                 </div>
             </div>
@@ -46,7 +44,6 @@
                 <div class="card text-white bg-warning mb-3">
                     <div class="card-body">
                         <h4>Total Tickets: <span id="ticketCount">@ViewBag.TicketCount</span></h4>
-                        <a href="/tickets" class="btn btn-light mt-3">View Tickets</a>
                     </div>
                 </div>
             </div>
@@ -54,7 +51,6 @@
                 <div class="card text-white bg-success mb-3">
                     <div class="card-body">
                         <h4>Total Leads: <span id="leadCount">@ViewBag.LeadCount</span></h4>
-                        <a href="/leads" class="btn btn-light mt-3">View Leads</a>
                     </div>
                 </div>
             </div>

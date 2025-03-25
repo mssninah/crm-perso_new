@@ -1,5 +1,5 @@
 using System.Net.Http;
-using System.Text.Json;
+using System.Text.Json; // Only use this for System.Text.Json
 using System.Threading.Tasks;
 using System.Collections.Generic;
 using Newapp.Models;
@@ -23,17 +23,15 @@ namespace Newapp.Services
             {
                 var response = await _httpClient.GetAsync("http://localhost:8080/api/leads");
 
-                // Log the raw JSON response
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Response JSON (Leads):");
-                Console.WriteLine(content);
-
+               
                 if (response.IsSuccessStatusCode)
                 {
-                    // Deserialize and return the data
-                    return JsonSerializer.Deserialize<List<Lead>>(content);
-                }
+                    // Deserialize using System.Text.Json
+                    var leads = JsonSerializer.Deserialize<List<Lead>>(content);
 
+                    return leads;
+                }   
                 Console.WriteLine("Error: Unable to fetch leads.");
                 return new List<Lead>();
             }
@@ -51,15 +49,13 @@ namespace Newapp.Services
             {
                 var response = await _httpClient.GetAsync("http://localhost:8080/api/tickets");
 
-                // Log the raw JSON response
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Response JSON (Tickets):");
-                Console.WriteLine(content);
-
+              
                 if (response.IsSuccessStatusCode)
                 {
-                    // Deserialize and return the data
-                    return JsonSerializer.Deserialize<List<Ticket>>(content);
+                    // Deserialize using System.Text.Json
+                    var tickets = JsonSerializer.Deserialize<List<Ticket>>(content);
+                    return tickets;
                 }
 
                 Console.WriteLine("Error: Unable to fetch tickets.");
@@ -72,22 +68,20 @@ namespace Newapp.Services
             }
         }
 
-
+        // Récupérer tous les clients
         public async Task<List<Customer>> GetAllCustomersAsync()
         {
             try
             {
                 var response = await _httpClient.GetAsync("http://localhost:8080/api/customers");
 
-                // Log the raw JSON response
                 var content = await response.Content.ReadAsStringAsync();
-                Console.WriteLine("Response JSON (Customers):");
-                Console.WriteLine(content);
-
+               
                 if (response.IsSuccessStatusCode)
                 {
-                    // Deserialize and return the data
-                    return JsonSerializer.Deserialize<List<Customer>>(content);
+                    // Deserialize using System.Text.Json
+                    var customers = JsonSerializer.Deserialize<List<Customer>>(content);
+                    return customers;
                 }
 
                 Console.WriteLine("Error: Unable to fetch customers.");
@@ -100,8 +94,7 @@ namespace Newapp.Services
             }
         }
 
-
-        //Get the count of customers
+        // Get the count of customers
         public async Task<int> GetCustomerCountAsync()
         {
             var customers = await GetAllCustomersAsync();
@@ -121,5 +114,22 @@ namespace Newapp.Services
             var tickets = await GetAllTicketsAsync();
             return tickets.Count;
         }
+        public async Task<string> GetTicketsJsonAsync()
+        {
+            try
+            {
+                var response = await _httpClient.GetAsync("http://localhost:8080/api/tickets");
+                return await response.Content.ReadAsStringAsync();
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred while fetching tickets: {ex.Message}");
+                return "[]"; // JSON vide par défaut
+            }
+        }
+
+        
     }
+
+    
 }

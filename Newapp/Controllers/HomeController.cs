@@ -29,6 +29,18 @@ namespace Newapp.Controllers
             ViewBag.TicketCount = ticketCount;
             ViewBag.CustomerCount = customerCount;
 
+
+            var customers = await _apiService.GetAllCustomersAsync();
+            var tickets = await _apiService.GetAllTicketsAsync();
+            var leads = await _apiService.GetAllLeadsAsync();
+
+            var viewModel = new DashboardViewModel
+            {
+                Customers = customers,
+                Tickets = tickets,
+                Leads = leads
+            };
+            
             return View();
         }
 

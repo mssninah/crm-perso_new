@@ -123,6 +123,7 @@ h1.display-4 {
 p.text-center {
   font-size: 1.125rem;
   color: #555;
+  text-align: left;
 }
 
 /* Responsive design for small screens */
