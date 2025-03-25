@@ -20,6 +20,24 @@ namespace Newapp.Controllers
 
          public async Task<IActionResult> Index()
         {
+
+            var totalBudget = await _apiService.GetTotalBudgetAsync();
+            var totalExpenses = await _apiService.GetTotalExpensesAsync();
+            var cumulativeBudgets = await _apiService.GetCumulativeBudgetForCustomersAsync();
+            var averageExpenseData = await _apiService.GetAverageExpensePerWeekAsync();
+
+            // Pass the values to ViewBag
+            ViewBag.TotalBudget = totalBudget;
+            ViewBag.TotalExpenses = totalExpenses;
+            ViewBag.CumulativeBudgets = cumulativeBudgets;
+            ViewBag.AverageExpenseData = averageExpenseData;
+
+
+        
+            ViewBag.AverageExpenseData = averageExpenseData;  // New line for passing data
+            ViewBag.BudgetEvolutionData = budgetEvolutionData;  // New line for passing data
+
+
             // Récupérer les nombres de leads et tickets
             var leadCount = await _apiService.GetLeadCountAsync();
             var ticketCount = await _apiService.GetTicketCountAsync();

@@ -171,6 +171,103 @@ namespace Newapp.Services
         }
 
 
+
+                public async Task<decimal> GetTotalBudgetAsync()
+                    {
+                        try
+                        {
+                            var response = await _httpClient.GetAsync("http://localhost:8080/api/budget/total");
+                            var content = await response.Content.ReadAsStringAsync();
+
+                            if (response.IsSuccessStatusCode)
+                            {
+                                var totalBudget = JsonSerializer.Deserialize<decimal>(content);
+                                return totalBudget;
+                            }
+
+                            Console.WriteLine("Error: Unable to fetch total budget.");
+                            return 0;
+                        }
+                        catch (Exception ex)
+                        {
+                            Console.WriteLine($"Exception occurred while fetching total budget: {ex.Message}");
+                            return 0;
+                        }
+                    }
+
+
+                public async Task<decimal> GetTotalExpensesAsync()
+            {
+                try
+                {
+                    var response = await _httpClient.GetAsync("http://localhost:8080/api/expense/total");
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var totalExpenses = JsonSerializer.Deserialize<decimal>(content);
+                        return totalExpenses;
+                    }
+
+                    Console.WriteLine("Error: Unable to fetch total expenses.");
+                    return 0;
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception occurred while fetching total expenses: {ex.Message}");
+                    return 0;
+                }
+            }
+            public async Task<List<object[]>> GetCumulativeBudgetForCustomersAsync()
+            {
+                try
+                {
+                    var response = await _httpClient.GetAsync("http://localhost:8080/api/budget/cumulative");
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var cumulativeBudgets = JsonSerializer.Deserialize<List<object[]>>(content);
+                        return cumulativeBudgets;
+                    }
+
+                    Console.WriteLine("Error: Unable to fetch cumulative budget for customers.");
+                    return new List<object[]>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception occurred while fetching cumulative budget: {ex.Message}");
+                    return new List<object[]>();
+                }
+            }
+
+            public async Task<List<object[]>> GetAverageExpensePerWeekAsync()
+            {
+                try
+                {
+                    var response = await _httpClient.GetAsync("http://localhost:8080/api/expense/average-per-week");
+                    var content = await response.Content.ReadAsStringAsync();
+
+                    if (response.IsSuccessStatusCode)
+                    {
+                        var averageExpenses = JsonSerializer.Deserialize<List<object[]>>(content);
+                        return averageExpenses;
+                    }
+
+                    Console.WriteLine("Error: Unable to fetch average expense per week.");
+                    return new List<object[]>();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine($"Exception occurred while fetching average expense: {ex.Message}");
+                    return new List<object[]>();
+                }
+            }
+
+
+
+
+
         
     }
 

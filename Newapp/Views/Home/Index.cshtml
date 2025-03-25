@@ -81,7 +81,7 @@
             labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
             datasets: [{
                 label: 'Average Expense ($)',
-                data: [150, 200, 180, 220, 170, 190, 210],
+                data: @Html.Raw(Json.Serialize(ViewBag.AverageExpenseData)),  // Dynamically populate from ViewBag
                 fill: false,
                 borderColor: '#1e40af',
                 tension: 0.1
@@ -93,7 +93,7 @@
             labels: ['Client A', 'Client B', 'Client C', 'Client D', 'Client E'],
             datasets: [{
                 label: 'Budget ($)',
-                data: [5000, 7000, 8000, 6500, 9000],
+                data: @Html.Raw(Json.Serialize(ViewBag.BudgetEvolutionData)),  // Dynamically populate from ViewBag
                 fill: false,
                 borderColor: '#1e3a8a',
                 tension: 0.1
@@ -132,13 +132,14 @@
         new Chart(document.getElementById('barChart'), { type: 'bar', data: barData });
         new Chart(document.getElementById('ticketStatusChart'), { type: 'doughnut', data: ticketStatusData });
         new Chart(document.getElementById('leadStatusChart'), { type: 'doughnut', data: leadStatusData });
-        // Average Expense Chart
+        
+        // Render the Average Expense Chart
         new Chart(document.getElementById('averageExpenseChart'), {
             type: 'line',
             data: averageExpenseData
         });
 
-        // Budget Evolution Chart
+        // Render the Budget Evolution Chart
         new Chart(document.getElementById('budgetEvolutionChart'), {
             type: 'line',
             data: budgetEvolutionData
