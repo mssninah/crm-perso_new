@@ -20,14 +20,7 @@
                     <td>@customer.Name</td>
                     <td>@customer.Email</td>
                     <td>@customer.Position</td>
-                    <td>
-                        <a href="#" class="btn btn-primary btn-sm">
-                            <i class="fas fa-edit"></i> <!-- Edit icon -->
-                        </a>
-                        <a href="#" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
-                        </a>
-                    </td>
+                
                 </tr>
             }
         </tbody>
@@ -58,9 +51,14 @@
                         <a href="#" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i> <!-- Edit icon -->
                         </a>
-                        <a href="#" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
-                        </a>
+                    </td>
+                    <td>
+                         <form action="@Url.Action("DeleteTickets", "List", new { id = ticket.TicketId })" method="post" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
+                            </button>
+                        </form>
                     </td>
                 </tr>
             }
@@ -90,9 +88,14 @@
                         <a href="#" class="btn btn-primary btn-sm">
                             <i class="fas fa-edit"></i> <!-- Edit icon -->
                         </a>
-                        <a href="#" class="btn btn-danger btn-sm">
-                            <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
-                        </a>
+                    </td>
+                    <td>
+                        <form action="@Url.Action("DeleteLead", "List", new { id = lead.LeadId })" method="post" style="display:inline;">
+                            <input type="hidden" name="_method" value="DELETE" />
+                            <button type="submit" class="btn btn-danger btn-sm">
+                                <i class="fas fa-trash-alt"></i> <!-- Delete icon -->
+                            </button>
+                        </form>
                     </td>
                 </tr>
             }
@@ -103,4 +106,6 @@
 @section Scripts {
     <!-- FontAwesome for icons -->
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
+    <!-- Alternative CDN for FontAwesome -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/js/all.min.js"></script>
 }

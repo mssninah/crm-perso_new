@@ -114,19 +114,40 @@ namespace Newapp.Services
             var tickets = await GetAllTicketsAsync();
             return tickets.Count;
         }
-        public async Task<string> GetTicketsJsonAsync()
+        
+
+
+        //delete tickets
+        public async Task<bool> DeleteTickets(int leadsID)
         {
             try
             {
-                var response = await _httpClient.GetAsync("http://localhost:8080/api/tickets");
-                return await response.Content.ReadAsStringAsync();
+                var response = await _httpClient.DeleteAsync($"http://localhost:8080/api/tickets/{leadsID}");
+                return response.IsSuccessStatusCode;
             }
             catch (Exception ex)
             {
-                Console.WriteLine($"Exception occurred while fetching tickets: {ex.Message}");
-                return "[]"; // JSON vide par défaut
+                Console.WriteLine($"Exception occurred while deleting customer: {ex.Message}");
+                return false;
             }
         }
+
+        //delete leads
+        public async Task<bool> DeleteLead(int leadId)
+        {
+            try
+            {
+                var response = await _httpClient.DeleteAsync($"http://localhost:8080/api/leads/{leadId}");
+                return response.IsSuccessStatusCode;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine($"Exception occurred while deleting lead: {ex.Message}");
+                return false;
+            }
+        }
+
+
 
         
     }

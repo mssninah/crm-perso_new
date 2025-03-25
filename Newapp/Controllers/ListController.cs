@@ -13,6 +13,34 @@ namespace Newapp.Controllers
         {
             _apiService = apiService;
         }
+        [HttpDelete("delete-ticket/{id}")]
+        public async Task<IActionResult> DeleteTickets(int id)
+        {
+            Console.WriteLine("here");
+            var result = await _apiService.DeleteTickets(id);
+
+            if (result)
+            {
+                return NoContent(); // Return 204 No Content if deletion is successful
+            }
+
+            return BadRequest("Failed to delete customer.");
+        }
+
+        // Endpoint to delete a lead
+        [HttpDelete("delete-lead/{id}")]
+        public async Task<IActionResult> DeleteLead(int id)
+        {
+            var result = await _apiService.DeleteLead(id);
+
+            if (result)
+            {
+                return NoContent(); // Return 204 No Content if deletion is successful
+            }
+
+            return BadRequest("Failed to delete lead.");
+        }
+    
      
         public async Task<IActionResult> Index()
         {
