@@ -1,8 +1,125 @@
 ﻿@{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Dashboard";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://learn.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+<div class="container-fluid">
+    <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
+
+    <!-- Displaying Charts (Stacked vertically) -->
+    <div class="row">
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Ticket Status</h3>
+                <canvas id="donutChart" class="chart-size"></canvas> <!-- Donut Chart -->
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Leads and Tickets Count</h3>
+                <canvas id="barChart" class="chart-size"></canvas> <!-- Bar Chart -->
+            </div>
+        </div>
+        <div class="col-md-12 mb-4">
+            <div class="card shadow-sm p-3">
+                <h3 class="text-center">Tickets Prices</h3>
+                <canvas id="lineChart" class="chart-size"></canvas> <!-- Line Chart -->
+            </div>
+        </div>
+    </div>
+
+    <!-- Displaying Tables (Stacked vertically) --><div class="container-fluid">
+    <h1 class="display-4 text-center mb-4">Crm Dashboard</h1>
+    <p class="text-center mb-5">This is your dashboard where you can view the current status of clients, tickets, and leads.</p>
+
+    <!-- Displaying Totals with Colored Boxes -->
+        <div class="row mt-5 text-center">
+            <div class="col-md-4">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h4>Total Clients: <span id="clientCount">@ViewBag.CustomerCount</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-warning mb-3">
+                    <div class="card-body">
+                        <h4>Total Tickets: <span id="ticketCount">@ViewBag.TicketCount</span></h4>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card text-white bg-success mb-3">
+                    <div class="card-body">
+                        <h4>Total Leads: <span id="leadCount">@ViewBag.LeadCount</span></h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+   
+
 </div>
+
+@section Scripts {
+    <!-- Chart.js Script -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <script>
+        // Static data for Leads and Tickets Count (Bar Chart)
+        const leadCount = @ViewBag.LeadCount; // Nombre dynamique de leads
+        const ticketCount = @ViewBag.TicketCount;  // Static number of tickets
+
+        // Data for the Bar Chart (Leads and Tickets)
+        const barData = {
+            labels: ['Leads', 'Tickets'],
+            datasets: [{
+                label: 'Leads and Tickets Count',
+                data: [leadCount, ticketCount], // Static values for leads and tickets
+                backgroundColor: ['#1e40af', '#e0f2fe'], // Different colors for each bar
+                borderColor: ['#1e40af', '#1e3a8a'],
+                borderWidth: 1
+            }]
+        };
+
+        // Static data for Ticket Status (Donut Chart)
+        const donutData = {
+            labels: ['Open', 'In Progress', 'Closed'],
+            datasets: [{
+                label: 'Ticket Status',
+                data: [20, 30, 50], // Static values for the status of tickets
+                backgroundColor: ['#1e40af', '#e0f2fe', '#1e3a8a'],
+                borderWidth: 1
+            }]
+        };
+
+        // Static data for Tickets Prices (Line Chart)
+        const lineData = {
+            labels: ['January', 'February', 'March', 'April', 'May'],
+            datasets: [{
+                label: 'Tickets Created',
+                data: [10, 20, 15, 30, 25], // Static values for the number of tickets created each month
+                fill: false,
+                borderColor: '#1e40af',
+                tension: 0.1
+            }]
+        };
+
+        // Create the charts
+        const donutChart = new Chart(document.getElementById('donutChart'), {
+            type: 'doughnut',
+            data: donutData
+        });
+
+        const barChart = new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: barData
+        });
+
+        const lineChart = new Chart(document.getElementById('lineChart'), {
+            type: 'line',
+            data: lineData
+        });
+    </script>
+}

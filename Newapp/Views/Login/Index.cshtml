@@ -1,0 +1,79 @@
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet">
+    <style>
+        .input-icon {
+            position: relative;
+        }
+        .input-icon i {
+            position: absolute;
+            left: 15px;
+            top: 50%;
+            transform: translateY(-50%);
+        }
+        .input-field {
+            padding-left: 35px;
+        }
+        .input-field:focus {
+            box-shadow: 0 0 0 2px #4A90E2;
+        }
+        .button {
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .button:hover {
+            transform: scale(1.05);
+            background-color: #357ABD;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 h-screen flex items-center justify-center">
+
+    <div class="bg-white shadow-xl rounded-3xl p-10 w-full max-w-md transform transition-all duration-500 ease-in-out hover:scale-105">
+        <h1 class="text-3xl font-semibold text-center text-blue-700 mb-6 animate__animated animate__fadeIn">Welcome Back</h1>
+
+        <form method="post">
+            <div class="mb-6">
+                <div class="input-icon">
+                    <i class="fas fa-envelope text-gray-500"></i>
+                    <input type="email" id="email" name="email" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none input-field" placeholder="Enter your email">
+                </div>
+                @if(ViewData["ErrorMessage"] != null)
+                {
+                    <p class="text-red-500 text-sm mt-2">@ViewData["ErrorMessage"]</p>
+                }
+            </div>
+            
+            <div class="mb-6">
+                <div class="input-icon">
+                    <i class="fas fa-lock text-gray-500"></i>
+                    <input type="password" id="password" name="password" class="w-full px-4 py-2 border rounded-lg shadow-sm focus:ring-2 focus:ring-blue-500 focus:outline-none input-field" placeholder="Enter your password" >
+                </div>
+            </div>
+
+            <div class="flex items-center justify-between mb-6">
+                <label class="flex items-center text-gray-600">
+                    <input type="checkbox" class="form-checkbox text-blue-600">
+                    <span class="ml-2">Remember me</span>
+                </label>
+                <a href="#" class="text-blue-600 text-sm hover:underline">Forgot Password?</a>
+            </div>
+            
+            <button type="submit" class="w-full bg-blue-700 text-white py-2 rounded-lg shadow-lg button hover:bg-blue-800">Login</button>
+        </form>
+
+        <div class="text-center mt-4">
+            <p class="text-sm text-gray-600">Don't have an account? <a href="#" class="text-blue-600 hover:underline">Sign Up</a></p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"></script>
+</body>
+</html>

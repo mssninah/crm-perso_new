@@ -7,30 +7,53 @@
     <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
     <link rel="stylesheet" href="~/Newapp.styles.css" asp-append-version="true" />
+    <style>
+        /* Styles pour la barre latérale */
+        .sidebar {
+            width: 250px;
+            height: 100vh;
+            position: fixed;
+            background-color: #1e40af; /* Bleu roi par défaut */
+            color: white;
+            padding-top: 20px;
+            transition: background-color 0.3s ease;
+        }
+        .sidebar .nav-link {
+            color: white;
+            margin: 10px 0;
+        }
+        .sidebar .nav-link:hover {
+            background-color: #1e3a8a; /* Bleu foncé */
+            border-radius: 5px;
+        }
+        .content {
+            margin-left: 250px;
+            padding: 20px;
+        }
+    </style>
 </head>
 <body>
-    <header>
-        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
-            <div class="container-fluid">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">Newapp</a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
-                        aria-expanded="false" aria-label="Toggle navigation">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
-                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
-                    <ul class="navbar-nav flex-grow-1">
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
-                        </li>
-                    </ul>
-                </div>
-            </div>
+    @if (!ViewData["HideNavbar"]?.Equals(true) ?? true)
+    {
+    <div class="sidebar" id="sidebar">
+        <div class="px-3">
+            <h4>CRM Perso</h4>
+        </div>
+        <nav class="nav flex-column px-3">
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+            <a class="nav-link" asp-area="" asp-controller="List" asp-action="Index">Details</a>
+            <a class="nav-link" href="http://localhost:5228/Alert/ConfigureAlertRate">Config</a>
+            <a class="nav-link" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+
         </nav>
-    </header>
-    <div class="container">
+        <div class="px-3 mt-4">
+            <label for="sidebarColor" class="form-label">Choose Sidebar Color:</label>
+            <input type="color" id="sidebarColor" class="form-control" value="#1e40af" />
+        </div>
+    </div>
+    }
+
+    <div class="content">
         <main role="main" class="pb-3">
             @RenderBody()
         </main>
@@ -41,9 +64,19 @@
             &copy; 2025 - Newapp - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
+
     <script src="~/lib/jquery/dist/jquery.min.js"></script>
     <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
     <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        // Script pour changer la couleur de la barre latérale
+        const sidebar = document.getElementById('sidebar');
+        const colorPicker = document.getElementById('sidebarColor');
+
+        colorPicker.addEventListener('input', function () {
+            sidebar.style.backgroundColor = colorPicker.value;
+        });
+    </script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

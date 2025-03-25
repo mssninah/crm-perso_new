@@ -1,7 +1,7 @@
-﻿/* Custom styling for navigation, buttons, and other components */
+/* Custom styling for navigation, buttons, and other components */
 
 /* Navbar styling */
-a.navbar-brand {
+a.navbar-brand[b-s44djx8tvn] {
   white-space: normal;
   word-break: break-word;
   font-weight: bold;
@@ -9,18 +9,18 @@ a.navbar-brand {
   font-size: 1.5rem; /* Larger size for the brand */
 }
 
-a {
+a[b-s44djx8tvn] {
   color: #1e40af; /* Primary blue for links */
   text-decoration: none;
 }
 
-a:hover {
+a:hover[b-s44djx8tvn] {
   color: #e0f2fe; /* Light blue on hover */
   text-decoration: underline;
 }
 
 /* Button styling */
-.btn-primary {
+.btn-primary[b-s44djx8tvn] {
   color: #fff;
   background-color: #1e40af; /* Primary blue */
   border-color: #1e3a8a; /* Darker shade for border */
@@ -29,54 +29,54 @@ a:hover {
   border-radius: 5px;
 }
 
-.btn-primary:hover {
+.btn-primary:hover[b-s44djx8tvn] {
   background-color: #1861ac; /* Darker blue on hover */
   border-color: #0f4e8d;
 }
 
-.nav-pills .nav-link.active, .nav-pills .show > .nav-link {
+.nav-pills .nav-link.active[b-s44djx8tvn], .nav-pills .show > .nav-link[b-s44djx8tvn] {
   color: #fff;
   background-color: #1e40af; /* Active link background */
   border-color: #1861ac; /* Matching active state border */
 }
 
 /* Navigation link styles */
-.nav-link {
+.nav-link[b-s44djx8tvn] {
   font-weight: bold;
   font-size: 1.1rem; /* Increased font size */
   padding: 10px 15px;
 }
 
-.navbar-nav {
+.navbar-nav[b-s44djx8tvn] {
   margin-left: auto;
 }
 
 /* Cards and container layout */
-.card {
+.card[b-s44djx8tvn] {
   border-radius: 8px;
   box-shadow: 0 .25rem .75rem rgba(0, 0, 0, .1); /* Soft shadow */
 }
 
-.card-body {
+.card-body[b-s44djx8tvn] {
   padding: 20px;
 }
 
 /* Border styling for sections */
-.border-top {
+.border-top[b-s44djx8tvn] {
   border-top: 1px solid #e0f2fe; /* Lighter border for cleaner look */
 }
 
-.border-bottom {
+.border-bottom[b-s44djx8tvn] {
   border-bottom: 1px solid #e0f2fe; /* Consistent bottom border */
 }
 
 /* Box shadow for better card depth */
-.box-shadow {
+.box-shadow[b-s44djx8tvn] {
   box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* More pronounced shadow */
 }
 
 /* Custom button for accept policy */
-button.accept-policy {
+button.accept-policy[b-s44djx8tvn] {
   font-size: 1rem;
   background-color: #1e40af; /* Blue background */
   color: white;
@@ -85,12 +85,12 @@ button.accept-policy {
   border-radius: 5px;
 }
 
-button.accept-policy:hover {
+button.accept-policy:hover[b-s44djx8tvn] {
   background-color: #1861ac; /* Darker blue on hover */
 }
 
 /* Footer styling */
-.footer {
+.footer[b-s44djx8tvn] {
   position: fixed;
   bottom: 0;
   width: 100%;
@@ -103,24 +103,24 @@ button.accept-policy:hover {
   box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1); /* Light shadow for footer */
 }
 
-.footer a {
+.footer a[b-s44djx8tvn] {
   color: #1e40af;
 }
 
-.footer a:hover {
+.footer a:hover[b-s44djx8tvn] {
   color: #1861ac;
   text-decoration: underline;
 }
 
 /* Dashboard header styling */
-h1.display-4 {
+h1.display-4[b-s44djx8tvn] {
   font-weight: 600;
   color: #1e40af;
   margin-bottom: 30px;
   font-size: 2.5rem;
 }
 
-p.text-center {
+p.text-center[b-s44djx8tvn] {
   font-size: 1.125rem;
   color: #555;
   text-align: left;
@@ -128,17 +128,17 @@ p.text-center {
 
 /* Responsive design for small screens */
 @media (max-width: 768px) {
-  .navbar-nav {
+  .navbar-nav[b-s44djx8tvn] {
     margin-top: 10px;
     text-align: center;
   }
-  .navbar-brand {
+  .navbar-brand[b-s44djx8tvn] {
     font-size: 1.25rem;
   }
-  .card {
+  .card[b-s44djx8tvn] {
     margin-bottom: 15px;
   }
-  .container-fluid {
+  .container-fluid[b-s44djx8tvn] {
     padding-left: 15px;
     padding-right: 15px;
   }

@@ -1,8 +1,10 @@
 {
   "version": 2,
-  "dgSpecHash": "89lTdcocRY07U4f/+M1TJiLZ1QMIV+D1sTNSj6mI0u6EeEpHpMVW7FgzSZRlw7+6gQnVc6ggKWkERA5Vo0LGuw==",
+  "dgSpecHash": "QYAq3KE6AQHOoQDTfZJZ/cjG5mqd5V48YsP5g4kufqSZW9IQgVz3pdPsMTPPqKolhc7kIAb23QIZFUPi4xGxGw==",
   "success": true,
   "projectFilePath": "/home/ninah/Eval/Java/git/crm-perso_new/Newapp/Newapp.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "/home/ninah/.nuget/packages/newtonsoft.json/13.0.3/newtonsoft.json.13.0.3.nupkg.sha512"
+  ],
   "logs": []
 }

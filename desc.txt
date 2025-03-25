@@ -1,0 +1,165 @@
+Voici un **TODO** détaillé pour créer ce nouveau dashboard avec toutes les fonctionnalités demandées :
+
+---
+
+### **1. Création du Dashboard**
+- Créer un **nouveau dashboard** dans l'application.
+- Ajouter une **section de total** pour les **clients**, **tickets** et **leads**.
+
+---
+
+### **2. Graphiques**
+- Ajouter **3 graphiques** au dashboard :
+  1. **Graphique Donut :** Répartition des tickets par statut.
+     - Afficher les statuts des tickets (ouvert, en cours, fermé).
+     - Récupérer les données via une requête SQL : 
+       ```sql
+       SELECT status, COUNT(*) AS ticket_count
+       FROM trigger_ticket
+       GROUP BY status;
+       ```
+
+  2. **Graphique Barres :** Répartition des leads par statut.
+     - Afficher les statuts des leads (en attente, qualifié, converti, abandonné).
+     - Récupérer les données via une requête SQL :
+       ```sql
+       SELECT status, COUNT(*) AS lead_count
+       FROM trigger_lead
+       GROUP BY status;
+       ```
+
+  3. **Graphique Courbe :** Évolution des tickets dans le temps.
+     - Afficher l’évolution des tickets créés par mois ou semaine.
+     - Récupérer les données via une requête SQL :
+       ```sql
+       SELECT 
+           DATE_FORMAT(created_at, '%Y-%m') AS month, 
+           COUNT(*) AS ticket_count
+       FROM trigger_ticket
+       GROUP BY month
+       ORDER BY month;
+       ```
+
+---
+
+### **3. Totaux Interactifs**
+- **Total des Clients :**
+  - Ajouter un **total** affichant le nombre de clients.
+  - Cliquer sur ce total affichera une liste détaillée des clients.
+
+  - **Requête SQL pour le total des clients :**
+    ```sql
+    SELECT COUNT(*) AS total_clients
+    FROM customer;
+    ```
+
+- **Total des Tickets :**
+  - Ajouter un **total** affichant le nombre de tickets.
+  - Cliquer sur ce total affichera une liste détaillée des tickets.
+
+  - **Requête SQL pour le total des tickets :**
+    ```sql
+    SELECT COUNT(*) AS total_tickets
+    FROM trigger_ticket;
+    ```
+
+- **Total des Leads :**
+  - Ajouter un **total** affichant le nombre de leads.
+  - Cliquer sur ce total affichera une liste détaillée des leads.
+
+  - **Requête SQL pour le total des leads :**
+    ```sql
+    SELECT COUNT(*) AS total_leads
+    FROM trigger_lead;
+    ```
+
+---
+
+### **4. Détails des Totaux**
+- Lorsqu'on clique sur un **total** (ex. "total des tickets"), afficher une page de détails qui inclut :
+  - **Liste détaillée** des éléments associés au total (clients, tickets, leads).
+  - **Options de modification** pour chaque élément :
+    - **Modifier un ticket/lead :** Permettre à l'utilisateur de modifier les informations (par exemple, montant, statut, description).
+    - **Supprimer un ticket/lead :** Ajouter un bouton pour supprimer un ticket ou un lead.
+    - **Ajout de dépenses :** Permettre d'ajouter une nouvelle dépense associée à un ticket ou un lead.
+
+---
+
+### **5. Configuration du Taux d'Alerte sur le Budget**
+- Ajouter une fonctionnalité pour définir un **taux d'alerte** sur le budget d'un client.
+  - **Permettre à l'admin de configurer un taux d'alerte** (par exemple, 5% du budget).
+  - Afficher ce taux d'alerte dans l'interface du dashboard.
+  
+- Lorsqu'un **taux d'alerte** est configuré, vérifier si le **budget** ou les **dépenses** dépassent ce taux.
+  - **Requête SQL pour ajouter un taux d'alerte :**
+    ```sql
+    INSERT INTO alert_rate (alert_percentage)
+    VALUES (?);
+    ```
+  - **Requête SQL pour récupérer les alertes actives :**
+    ```sql
+    SELECT * FROM alert_rate ORDER BY date_rate DESC LIMIT 1;
+    ```
+
+---
+
+### **6. Modification du Montant d'un Ticket/Lead**
+- Permettre à l'utilisateur de **modifier** le montant d'un ticket ou lead directement depuis le tableau de bord.
+  - Ajouter des **champs de saisie** pour la modification des montants.
+
+  - **Requête SQL pour modifier un ticket :**
+    ```sql
+    UPDATE trigger_ticket
+    SET amount = ?
+    WHERE ticket_id = ?;
+    ```
+
+  - **Requête SQL pour modifier un lead :**
+    ```sql
+    UPDATE trigger_lead
+    SET amount = ?
+    WHERE lead_id = ?;
+    ```
+
+---
+
+### **7. Suppression d'un Ticket/Lead**
+- Ajouter un bouton de **suppression** pour les tickets et leads dans les détails.
+  - **Requête SQL pour supprimer un ticket :**
+    ```sql
+    DELETE FROM trigger_ticket WHERE ticket_id = ?;
+    ```
+
+  - **Requête SQL pour supprimer un lead :**
+    ```sql
+    DELETE FROM trigger_lead WHERE lead_id = ?;
+    ```
+
+---
+
+### **8. Intégration avec ExistingApp**
+- Réaliser l'intégration avec **ExistingApp** pour récupérer et afficher des informations supplémentaires (comme les taux d'alerte configurés).
+  - Utiliser les données de **taux d'alerte** de ExistingApp pour configurer les alertes sur le budget dans le nouveau dashboard.
+
+---
+
+### **9. Tests et Validation**
+- Effectuer des tests pour :
+  - Vérifier la bonne récupération des données dans les graphiques.
+  - Vérifier l'interactivité des totaux (cliquer pour afficher les détails).
+  - Vérifier la modification et suppression des tickets/leads.
+  - Vérifier le bon fonctionnement de la configuration du taux d'alerte.
+
+---
+
+### **10. Déploiement**
+- Une fois les tests validés, préparer le déploiement du dashboard dans l’application.
+
+---
+
+### **Livrables Attendus :**
+- Un **dashboard fonctionnel** avec 3 graphiques (Donut, Barres, Courbe).
+- Des **totaux interactifs** pour clients, tickets, et leads.
+- La possibilité de **modifier** ou **supprimer** des tickets et leads.
+- La possibilité de configurer un **taux d'alerte sur le budget**.
+
