@@ -5,6 +5,10 @@
       "PackagePath": "staticwebassets/Newapp.bundle.scp.css"
     },
     {
+      "Id": "/home/ninah/Eval/Java/git/crm-perso_new/Newapp/wwwroot/css/profile.css",
+      "PackagePath": "staticwebassets/css/profile.css"
+    },
+    {
       "Id": "/home/ninah/Eval/Java/git/crm-perso_new/Newapp/wwwroot/css/site.css",
       "PackagePath": "staticwebassets/css/site.css"
     },

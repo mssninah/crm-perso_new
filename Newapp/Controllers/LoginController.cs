@@ -2,8 +2,6 @@ using Microsoft.AspNetCore.Mvc;
 using Newapp.Models;
 using Newapp.Services;
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Http;  // Nécessaire pour accéder à la session
-using System.Text.Json;
 
 namespace Newapp.Controllers
 {
@@ -27,11 +25,12 @@ namespace Newapp.Controllers
         [HttpPost]
         public async Task<IActionResult> Index(string email)
         {
-            ViewData["HideNavbar"] = true;
 
             // Check if the email is empty
             if (string.IsNullOrWhiteSpace(email))
             {
+                ViewData["HideNavbar"] = true;
+
                 ViewData["ErrorMessage"] = "Email is required.";
                 return View();  // Return to the login form with error message
             }
@@ -47,15 +46,14 @@ namespace Newapp.Controllers
                     return View();  // Return to the login form with error message
                 }
 
-                // Store the user in the session as a serialized JSON string
-                var userJson = JsonSerializer.Serialize(user);
-                HttpContext.Session.SetString("User", userJson);  // Stocker l'objet User sérialisé
-
-                // If user is found, proceed to the home page or dashboard
-                return RedirectToAction("Index", "Home"); // Redirect to the home page or another page
+                // Pass the user directly to the Profile view via ViewBag
+                ViewBag.User = user;
+                ViewBag.CountdownTime = 10; 
+                return View("Profile"); // Render the Profile view directly
             }
             catch (Exception ex)
             {
+                ViewData["HideNavbar"] = true;
                 ViewData["ErrorMessage"] = $"An error occurred: {ex.Message}";
                 return View();  // Return to the login form with error message
             }
