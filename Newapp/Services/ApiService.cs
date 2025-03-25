@@ -205,7 +205,7 @@ namespace Newapp.Services
 
                     if (response.IsSuccessStatusCode)
                     {
-                        var totalExpenses = JsonSerializer.Deserialize<decimal>(content);
+                    var totalExpenses = JsonSerializer.Deserialize<decimal>(content);
                         return totalExpenses;
                     }
 

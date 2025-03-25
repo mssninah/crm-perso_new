@@ -1,4 +1,6 @@
-﻿@{
+﻿@model Newapp.Models.DashBoard2Model
+
+@{
     ViewData["Title"] = "Dashboard";
 }
 
@@ -12,7 +14,7 @@
             <div class="card text-white bg-primary mb-3">
                 <div class="card-body">
                     <h4>Total Expense</h4>
-                    <h3 id="expenseCount">$10,000</h3>
+                    <h3 id="expenseCount">@Model.TotalExpenses</h3> <!-- Dynamically populated total expenses -->
                 </div>
             </div>
         </div>
@@ -20,7 +22,7 @@
             <div class="card text-white bg-danger mb-3">
                 <div class="card-body">
                     <h4>Total Budget</h4>
-                    <h3 id="budgetCount">$50,000</h3>
+                    <h3 id="budgetCount"> @Model.TotalBudget </h3> <!-- Dynamically populated total budget -->
                 </div>
             </div>
         </div>
@@ -28,7 +30,7 @@
             <div class="card text-white bg-info mb-3">
                 <div class="card-body">
                     <h4>Total Clients</h4>
-                    <h3 id="clientCount">@ViewBag.CustomerCount</h3>
+                    <h3 id="clientCount">@Model.TicketCount </h3>
                 </div>
             </div>
         </div>
@@ -42,79 +44,47 @@
                 <canvas id="barChart" class="chart-size"></canvas>
             </div>
         </div>
+
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm p-3">
-                <h3 class="text-center">Ticket Status</h3>
-                <canvas id="ticketStatusChart" class="chart-size"></canvas>
+                <h3 class="text-center">Average Expense</h3>
+                <canvas id="averageExpenseChart" class="chart-size"></canvas>
             </div>
         </div>
+
         <div class="col-md-6 mb-4">
             <div class="card shadow-sm p-3">
-                <h3 class="text-center">Lead Status</h3>
-                <canvas id="leadStatusChart" class="chart-size"></canvas>
+                <h3 class="text-center">Budget Evolution</h3>
+                <canvas id="budgetEvolutionChart" class="chart-size"></canvas>
             </div>
         </div>
-
-        <div class="col-md-6 mb-4">
-        <div class="card shadow-sm p-3">
-            <h3 class="text-center">Average Expense</h3>
-            <canvas id="averageExpenseChart" class="chart-size"></canvas>
-                </div>
-            </div>
-            <div class="col-md-6 mb-4">
-                <div class="card shadow-sm p-3">
-                    <h3 class="text-center">Budget Evolution</h3>
-                    <canvas id="budgetEvolutionChart" class="chart-size"></canvas>
-                </div>
-        </div>
-
-
-
     </div>
 </div>
 
 @section Scripts {
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <script>
-        // Average Expense Data (Line Chart)
+        // Prepare data for Average Expense chart (Line Chart)
         const averageExpenseData = {
-            labels: ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday'],
+            labels: @Html.Raw(Json.Serialize(Model.AverageExpenseLabels)),
             datasets: [{
                 label: 'Average Expense ($)',
-                data: @Html.Raw(Json.Serialize(ViewBag.AverageExpenseData)),  // Dynamically populate from ViewBag
+                data: @Html.Raw(Json.Serialize(Model.AverageExpenseValues)),
                 fill: false,
                 borderColor: '#1e40af',
                 tension: 0.1
             }]
         };
 
-        // Budget Evolution Data (Line Chart)
+        // Prepare data for Budget Evolution chart (Line Chart)
         const budgetEvolutionData = {
-            labels: ['Client A', 'Client B', 'Client C', 'Client D', 'Client E'],
+            labels: @Html.Raw(Json.Serialize(Model.CumulativeBudgetsLabels)),
             datasets: [{
                 label: 'Budget ($)',
-                data: @Html.Raw(Json.Serialize(ViewBag.BudgetEvolutionData)),  // Dynamically populate from ViewBag
+                data: @Html.Raw(Json.Serialize(Model.CumulativeBudgetsValues)),
                 fill: false,
                 borderColor: '#1e3a8a',
                 tension: 0.1
-            }]
-        };
-
-        // Ticket Status Data (Doughnut Chart)
-        const ticketStatusData = {
-            labels: ['Open', 'In Progress', 'Closed'],
-            datasets: [{
-                data: [20, 30, 50],
-                backgroundColor: ['#1e40af', '#e0f2fe', '#1e3a8a']
-            }]
-        };
-
-        // Lead Status Data (Doughnut Chart)
-        const leadStatusData = {
-            labels: ['New', 'Contacted', 'Converted'],
-            datasets: [{
-                data: [25, 40, 35],
-                backgroundColor: ['#1e3a8a', '#1e40af', '#e0f2fe']
             }]
         };
 
@@ -123,27 +93,27 @@
             labels: ['Leads', 'Tickets'],
             datasets: [{
                 label: 'Count',
-                data: [@ViewBag.LeadCount, @ViewBag.TicketCount],
+                data: [@Model.LeadCount, @Model.TicketCount],  // Dynamically populate lead and ticket count from the model
                 backgroundColor: ['#1e40af', '#e0f2fe']
             }]
         };
 
-        // Render Charts
-        new Chart(document.getElementById('barChart'), { type: 'bar', data: barData });
-        new Chart(document.getElementById('ticketStatusChart'), { type: 'doughnut', data: ticketStatusData });
-        new Chart(document.getElementById('leadStatusChart'), { type: 'doughnut', data: leadStatusData });
-        
-        // Render the Average Expense Chart
-        new Chart(document.getElementById('averageExpenseChart'), {
-            type: 'line',
-            data: averageExpenseData
-        });
+        // // Render the Average Expense Chart
+        // new Chart(document.getElementById('averageExpenseChart'), {
+        //     type: 'line',
+        //     data: averageExpenseData
+        // });
 
-        // Render the Budget Evolution Chart
-        new Chart(document.getElementById('budgetEvolutionChart'), {
-            type: 'line',
-            data: budgetEvolutionData
-        });
+        // // Render the Budget Evolution Chart
+        // new Chart(document.getElementById('budgetEvolutionChart'), {
+        //     type: 'line',
+        //     data: budgetEvolutionData
+        // });
 
+        // Render the Leads and Tickets Count Bar Chart
+        new Chart(document.getElementById('barChart'), {
+            type: 'bar',
+            data: barData
+        });
     </script>
 }

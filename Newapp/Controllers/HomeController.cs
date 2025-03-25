@@ -17,50 +17,44 @@ namespace Newapp.Controllers
             _logger = logger;
             _apiService = apiService;
         }
+    public async Task<IActionResult> Index()
+    {
+        // Fetch the count data
+        var leadCount = await _apiService.GetLeadCountAsync();
+        var ticketCount = await _apiService.GetTicketCountAsync();
+        var customerCount = await _apiService.GetCustomerCountAsync();
 
-         public async Task<IActionResult> Index()
+        // Fetch the other data for charts
+        var totalBudget = await _apiService.GetTotalBudgetAsync();
+        var totalExpenses = await _apiService.GetTotalExpensesAsync();
+        // var cumulativeBudgets = await _apiService.GetCumulativeBudgetForCustomersAsync();
+        // var averageExpenseData = await _apiService.GetAverageExpensePerWeekAsync();
+
+        // // Prepare the data for charts
+        // var averageExpenseLabels = averageExpenseData.Select(e => "Week " + e[1] + " (" + e[0] + ")").ToList();
+        // var averageExpenseValues = averageExpenseData.Select(e => e[2]).ToList();
+
+        // var budgetLabels = cumulativeBudgets.Select(b => b[1].ToString()).ToList();
+        // var budgetValues = cumulativeBudgets.Select(b => (decimal)b[2]).ToList();
+
+        // Create the DashBoard2Model to pass data to the view
+        var viewModel = new DashBoard2Model
         {
+            CustomerCount = customerCount,
+            TotalBudget = totalBudget,
+            TotalExpenses = totalExpenses,
+            LeadCount = leadCount,
+            TicketCount = ticketCount,
+            // AverageExpenseLabels = averageExpenseLabels,
+            // AverageExpenseValues = averageExpenseValues,
+            // CumulativeBudgetsLabels = budgetLabels,
+            // CumulativeBudgetsValues = budgetValues
+        };
 
-            var totalBudget = await _apiService.GetTotalBudgetAsync();
-            var totalExpenses = await _apiService.GetTotalExpensesAsync();
-            var cumulativeBudgets = await _apiService.GetCumulativeBudgetForCustomersAsync();
-            var averageExpenseData = await _apiService.GetAverageExpensePerWeekAsync();
+        return View(viewModel);
+    }
 
-            // Pass the values to ViewBag
-            ViewBag.TotalBudget = totalBudget;
-            ViewBag.TotalExpenses = totalExpenses;
-            ViewBag.CumulativeBudgets = cumulativeBudgets;
-            ViewBag.AverageExpenseData = averageExpenseData;
-
-
-        
-            ViewBag.AverageExpenseData = averageExpenseData;  // New line for passing data
-            ViewBag.BudgetEvolutionData = budgetEvolutionData;  // New line for passing data
-
-
-            // Récupérer les nombres de leads et tickets
-            var leadCount = await _apiService.GetLeadCountAsync();
-            var ticketCount = await _apiService.GetTicketCountAsync();
-            var customerCount = await _apiService.GetCustomerCountAsync();
-            // Passer les valeurs à la vue via ViewBag
-            ViewBag.LeadCount = leadCount;
-            ViewBag.TicketCount = ticketCount;
-            ViewBag.CustomerCount = customerCount;
-
-
-            var customers = await _apiService.GetAllCustomersAsync();
-            var tickets = await _apiService.GetAllTicketsAsync();
-            var leads = await _apiService.GetAllLeadsAsync();
-
-            var viewModel = new DashboardViewModel
-            {
-                Customers = customers,
-                Tickets = tickets,
-                Leads = leads
-            };
-            
-            return View();
-        }
+                 
 
         public IActionResult Privacy()
         {
